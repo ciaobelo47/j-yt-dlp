@@ -6,7 +6,6 @@ A Java wrapper for yt-dlp.
 ***
 
 # Install
-***
 
 Just import the package in your pom.xml:
 ```xml
@@ -16,8 +15,6 @@ Just import the package in your pom.xml:
     <version>1.0</version>
 </dependency>
 ```
-
-***
 
 # Usage
 
