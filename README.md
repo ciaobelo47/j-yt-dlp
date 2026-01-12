@@ -7,7 +7,7 @@ A Java wrapper for [yt-dlp](https://github.com/yt-dlp/yt-dlp).
 
 # Install
 
-Just import the package in your pom.xml:
+After configuring [GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry?versionId=free-pro-team%40latest&productId=packages&restPage=learn-github-packages%2Cintroduction-to-github-packages) to work with your workspace, just import the package in your pom.xml:
 ```xml
 <dependency>
     <groupId>me.mailo</groupId>
