@@ -12,7 +12,7 @@ After configuring [GitHub Packages](https://docs.github.com/en/packages/working-
 <dependency>
     <groupId>me.mailo</groupId>
     <artifactId>j-yt-dlp</artifactId>
-    <version>1.0</version>
+    <version>$version</version>
 </dependency>
 ```
 
