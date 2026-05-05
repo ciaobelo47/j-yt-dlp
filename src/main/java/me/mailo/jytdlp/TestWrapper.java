@@ -3,10 +3,8 @@ package me.mailo.jytdlp;
 import me.mailo.jytdlp.wrapper.AudioFormats;
 import me.mailo.jytdlp.wrapper.Ytdlp;
 import me.mailo.jytdlp.wrapper.YtdlpRequest;
-import me.mailo.jytdlp.download.Downloader;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 
 /**
