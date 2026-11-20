@@ -8,11 +8,9 @@ import javax.swing.*;
 import java.io.File;
 
 /**
- * This class is only used for testing the library
- * <br>
- * <b>Do NOT import it anywhere</b>
+ * This class is an example on how you use the library
  */
-public class TestWrapper {
+class TestWrapper {
     public static void main(String[] args) {
         Ytdlp.enableDebug();
 
@@ -37,7 +35,7 @@ public class TestWrapper {
         YtdlpRequest.withMetadata();
         YtdlpRequest.withThumbnail();
         YtdlpRequest.onlyAudio();
-        YtdlpRequest.setUrl("https://music.youtube.com/watch?v=lYBUbBu4W08");
+        YtdlpRequest.setUrl(JOptionPane.showInputDialog(null, "Insert URL", "Insert Url", JOptionPane.QUESTION_MESSAGE)); // es. "https://www.youtube.com/watch?v=_v-cT1y9K44"
         Ytdlp.execute();
     }
 }
