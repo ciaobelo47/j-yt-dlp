@@ -27,7 +27,7 @@ public class Downloader {
             if (winBin == null) {
                 Ytdlp.logger.log(LogLevel.WARN, "The binary was successfully downloaded but it doesn't work. Check the log for errors.", true);
             } else {
-                YtdlpRequest.ytdlpBin = winBin;
+                Ytdlp.ytdlpBin = winBin;
             }
 
         } else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
@@ -37,7 +37,7 @@ public class Downloader {
             if (linBin == null) {
                 Ytdlp.logger.log(LogLevel.WARN, "The binary was successfully downloaded but it doesn't work. Check the log for errors.", true);
             } else {
-                YtdlpRequest.ytdlpBin = linBin;
+                Ytdlp.ytdlpBin = linBin;
             }
 
         } else {

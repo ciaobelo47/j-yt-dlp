@@ -13,12 +13,17 @@ import java.io.*;
 public class Ytdlp {
     public static WillyLogger logger = new WillyLogger("j-yt-dlp");
 
-    public static void execute() {
+    /**
+     * The location of ytdlp's binary, usually downloaded from {@link me.mailo.jytdlp.download.Downloader} class
+     */
+    public static File ytdlpBin;
+
+    public static int execute(YtdlpRequest req) {
         Downloader.download();
-        logger.log(LogLevel.DEBUG, YtdlpRequest.argBuilder().toString(), true);
+        logger.log(LogLevel.DEBUG, req.argBuilder().toString(), true);
 
         try {
-            ProcessBuilder builder = new ProcessBuilder(YtdlpRequest.argBuilder());
+            ProcessBuilder builder = new ProcessBuilder(req.argBuilder());
             builder.directory(new File("bin").getAbsoluteFile());
             builder.redirectErrorStream(true);
             if (logger.enableDebug) {
@@ -27,14 +32,20 @@ public class Ytdlp {
             Process p = builder.start();
             p.waitFor();
 
-            logger.log(LogLevel.INFO, "The file has been successfully downloaded!", true);
+            if (p.exitValue() == 0 || p.exitValue() == 1) {
+                logger.log(LogLevel.INFO, "The file has been successfully downloaded!", true);
+            } else {
+                logger.log(LogLevel.ERROR, "There was an error while downloading the file. Check exit code to know more.", true);
+            }
             logger.log(LogLevel.DEBUG, "yt-dlp exit code: " + p.exitValue(), true);
-            System.exit(0);
 
             logger.log(LogLevel.INFO, ConsoleColors.RESET, true);
+            return p.exitValue();
+
         } catch (NullPointerException e) {
             logger.log(LogLevel.ERROR, "yt-dlp binary not found", true);
             logger.log(LogLevel.ERROR, "The program will exit", true);
+            return -1;
 
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
@@ -45,4 +56,4 @@ public class Ytdlp {
         logger.enableDebug = true;
         logger.log(LogLevel.DEBUG, "Starting with debug log enabled!", true);
     }
- }
+}

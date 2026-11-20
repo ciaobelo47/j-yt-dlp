@@ -13,11 +13,12 @@ import java.io.File;
 class TestWrapper {
     public static void main(String[] args) {
         Ytdlp.enableDebug();
+        YtdlpRequest req = new YtdlpRequest();
 
         File out = new File(System.getProperty("user.home"));
 
-        YtdlpRequest.audioQuality(0);
-        YtdlpRequest.audioFormat(AudioFormats.MP3);
+        req.audioQuality(0);
+        req.audioFormat(AudioFormats.MP3);
 
         JFileChooser j = new JFileChooser();
         j.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -29,13 +30,13 @@ class TestWrapper {
             System.exit(-1);
         }
 
-        YtdlpRequest.setDownloadPath(out.getAbsolutePath());
+        req.setDownloadPath(out.getAbsolutePath());
 
-        YtdlpRequest.outputRegex("%(title)s.%(ext)s");
-        YtdlpRequest.withMetadata();
-        YtdlpRequest.withThumbnail();
-        YtdlpRequest.onlyAudio();
-        YtdlpRequest.setUrl(JOptionPane.showInputDialog(null, "Insert URL", "Insert Url", JOptionPane.QUESTION_MESSAGE)); // es. "https://www.youtube.com/watch?v=_v-cT1y9K44"
-        Ytdlp.execute();
+        req.outputRegex("%(title)s.%(ext)s");
+        req.withMetadata();
+        req.withThumbnail();
+        req.onlyAudio();
+        req.setUrl(JOptionPane.showInputDialog(null, "Insert URL", "Insert Url", JOptionPane.QUESTION_MESSAGE)); // es. "https://www.youtube.com/watch?v=_v-cT1y9K44"
+        System.out.println(Ytdlp.execute(req));
     }
 }
