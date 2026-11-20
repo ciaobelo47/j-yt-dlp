@@ -12,8 +12,11 @@ import java.io.File;
  */
 class TestWrapper {
     public static void main(String[] args) {
-        Ytdlp.enableDebug();
+        new Ytdlp();
         YtdlpRequest req = new YtdlpRequest();
+
+        Ytdlp.enableDebug();
+        System.out.println(Ytdlp.ytDlpVersion);
 
         File out = new File(System.getProperty("user.home"));
 

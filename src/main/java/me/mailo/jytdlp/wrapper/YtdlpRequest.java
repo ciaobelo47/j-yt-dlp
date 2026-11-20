@@ -28,6 +28,10 @@ public class YtdlpRequest {
     public void updateReq() {
         OPT.put("-U", null);
     }
+    public boolean versionReq() {
+        OPT.put("--version", null);
+        return true;
+    }
 
     public void setUrl(String s) { url = s; }
     public void setDownloadPath(String path) { OPT.put("-P", path); }
