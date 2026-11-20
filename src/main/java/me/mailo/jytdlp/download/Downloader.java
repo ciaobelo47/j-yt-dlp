@@ -51,6 +51,7 @@ public class Downloader {
 
             // download phase
             if (!destination.exists()) {
+                destination.getParentFile().mkdirs();
                 Ytdlp.logger.log(LogLevel.WARN, "yt-dlp binary not found, trying to download it...", true);
 
                 ReadableByteChannel rbc = Channels.newChannel(downloadUrl.openStream());
@@ -104,6 +105,7 @@ public class Downloader {
 
             // download phase
             if (!destination.exists()) {
+                destination.getParentFile().mkdirs();
                 Ytdlp.logger.log(LogLevel.WARN, "yt-dlp binary not found, trying to download it...", true);
 
                 ReadableByteChannel rbc = Channels.newChannel(downloadUrl.openStream());
