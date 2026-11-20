@@ -17,6 +17,7 @@ class TestWrapper {
 
         Ytdlp.enableDebug();
         System.out.println(Ytdlp.ytDlpVersion);
+        Ytdlp.updateYtDlp();
 
         File out = new File(System.getProperty("user.home"));
 

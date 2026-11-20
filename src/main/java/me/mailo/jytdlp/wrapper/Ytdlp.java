@@ -63,6 +63,14 @@ public class Ytdlp {
         logger.log(LogLevel.DEBUG, "Starting with debug log enabled!", true);
     }
 
+    public static void updateYtDlp() {
+        new Ytdlp();
+        YtdlpRequest req = new YtdlpRequest();
+        req.updateReq();
+        Ytdlp.execute(req);
+        Ytdlp.ytDlpVersion = ytDlpVersion();
+    }
+
     private static String ytDlpVersion() {
         YtdlpRequest req = new YtdlpRequest();
         req.versionReq();
