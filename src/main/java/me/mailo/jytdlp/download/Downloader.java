@@ -26,8 +26,6 @@ public class Downloader {
             File winBin = windowsDownload(new File("bin/ytdlp.exe"));
             if (winBin == null) {
                 Ytdlp.logger.log(LogLevel.WARN, "The binary was successfully downloaded but it doesn't work. Check the log for errors.", true);
-            } else {
-                Ytdlp.ytdlpBin = winBin;
             }
 
         } else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
@@ -36,8 +34,6 @@ public class Downloader {
             File linBin = linuxDownload(new File("bin/ytdlp"));
             if (linBin == null) {
                 Ytdlp.logger.log(LogLevel.WARN, "The binary was successfully downloaded but it doesn't work. Check the log for errors.", true);
-            } else {
-                Ytdlp.ytdlpBin = linBin;
             }
 
         } else {
@@ -113,6 +109,8 @@ public class Downloader {
                 fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 
                 Ytdlp.logger.log(LogLevel.INFO, "yt-dlp binary successfuly downloaded at: " + destination.getAbsolutePath(), true);
+
+                fos.close();
             }
 
             //testing phase

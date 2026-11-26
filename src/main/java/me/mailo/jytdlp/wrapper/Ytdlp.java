@@ -16,20 +16,20 @@ public class Ytdlp {
     /**
      * The location of ytdlp's binary, usually downloaded from {@link me.mailo.jytdlp.download.Downloader} class
      */
-    public static File ytdlpBin;
-    public static String ytDlpVersion;
+    public File ytdlpBin;
+    public String ytDlpVersion;
 
     public Ytdlp() {
         ytdlpBin = new File(osPath());
         ytDlpVersion = ytDlpVersion();
     }
 
-    public static int execute(YtdlpRequest req) {
+    public int execute(YtdlpRequest req) {
         Downloader.download();
-        logger.log(LogLevel.DEBUG, req.argBuilder().toString(), true);
+        logger.log(LogLevel.DEBUG, req.argBuilder(this).toString(), true);
 
         try {
-            ProcessBuilder builder = new ProcessBuilder(req.argBuilder());
+            ProcessBuilder builder = new ProcessBuilder(req.argBuilder(this));
             builder.directory(new File("bin").getAbsoluteFile());
             builder.redirectErrorStream(true);
             if (logger.enableDebug) {
@@ -58,25 +58,24 @@ public class Ytdlp {
         }
     }
 
-    public static void enableDebug() {
+    public void enableDebug() {
         logger.enableDebug = true;
         logger.log(LogLevel.DEBUG, "Starting with debug log enabled!", true);
     }
 
-    public static void updateYtDlp() {
-        new Ytdlp();
+    public void updateYtDlp() {
         YtdlpRequest req = new YtdlpRequest();
         req.updateReq();
-        Ytdlp.execute(req);
-        Ytdlp.ytDlpVersion = ytDlpVersion();
+        this.execute(req);
+        this.ytDlpVersion = ytDlpVersion();
     }
 
-    private static String ytDlpVersion() {
+    private String ytDlpVersion() {
         YtdlpRequest req = new YtdlpRequest();
         req.versionReq();
 
         try {
-            ProcessBuilder builder = new ProcessBuilder(req.argBuilder());
+            ProcessBuilder builder = new ProcessBuilder(req.argBuilder(this));
             builder.directory(new File("bin").getAbsoluteFile());
             builder.redirectErrorStream(true);
             if (logger.enableDebug) {

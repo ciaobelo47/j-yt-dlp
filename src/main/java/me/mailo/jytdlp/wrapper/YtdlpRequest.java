@@ -53,9 +53,9 @@ public class YtdlpRequest {
 
     /**
      * the simple way to get cookies
-     * @param browser major browser are defined in {@link AudioFormats}. You can use a custom string if you want
+     * @param browser major browser are defined in {@link Browsers}. You can use a custom string if you want
      */
-    public  void cookieFromBrowser(String browser) { OPT.put("--cookies-from-browser", browser); }
+    public void cookieFromBrowser(String browser) { OPT.put("--cookies-from-browser", browser); }
 
     /**
      * @param quality number from 0 (best) to 10 (worst)
@@ -71,10 +71,10 @@ public class YtdlpRequest {
      * Creates the final command to be executed
      * @return the binary + the list of arguments
      */
-    protected List<String> argBuilder() {
+    protected List<String> argBuilder(Ytdlp yt) {
         List<String> s = new ArrayList<>();
 
-        s.add(Ytdlp.ytdlpBin.getAbsolutePath());
+        s.add(yt.ytdlpBin.getAbsolutePath());
 
         if (Ytdlp.logger.enableDebug) {
             s.add("-v");
@@ -87,12 +87,11 @@ public class YtdlpRequest {
         for (Map.Entry<String, String> option : OPT.entrySet()) {
             String key = option.getKey();
             String value = option.getValue();
-            if (value == null) {
-                value = "";
-            }
 
             s.add(key);
-            s.add(value);
+            if (value != null) {
+                s.add(value);
+            }
         }
 
         if (url != null) {

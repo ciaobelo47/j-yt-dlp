@@ -12,12 +12,12 @@ import java.io.File;
  */
 class TestWrapper {
     public static void main(String[] args) {
-        new Ytdlp();
+        Ytdlp yt = new Ytdlp();
         YtdlpRequest req = new YtdlpRequest();
 
-        Ytdlp.enableDebug();
-        System.out.println(Ytdlp.ytDlpVersion);
-        Ytdlp.updateYtDlp();
+        yt.enableDebug();
+        System.out.println(yt.ytDlpVersion);
+        yt.updateYtDlp();
 
         File out = new File(System.getProperty("user.home"));
 
@@ -41,6 +41,6 @@ class TestWrapper {
         req.withThumbnail();
         req.onlyAudio();
         req.setUrl(JOptionPane.showInputDialog(null, "Insert URL", "Insert Url", JOptionPane.QUESTION_MESSAGE)); // es. "https://www.youtube.com/watch?v=_v-cT1y9K44"
-        System.out.println(Ytdlp.execute(req));
+        System.out.println(yt.execute(req));
     }
 }
